@@ -15,14 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from polls.views import index, detail, blog_hendler
+
 from django.conf import settings
 from django.conf.urls.static import static
 
+from polls.views import index, detail
+from news import views
+
 urlpatterns = [
     path('', index),
-    path('blog/', blog_hendler),
+    path('blog/', views.blog_hendler),
+    path('page/', views.page_hendler),
+    path('about/', views.about_hendler),
+    path('contact/', views.contact_hendler),
+    path('index/', views.index_hendler),
+    path('search/', views.search_hendler),
     path('polls/<int:question_id>/', detail),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
